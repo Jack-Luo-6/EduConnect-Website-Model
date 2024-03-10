@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+      <h1>Results:</h1>
+      <div class="about">{{body}}</div>
+      <p>&nbsp;</p>
+      <a class="action" href="{{ url_for('open_ai.index') }}">Ask Again</a>
+      <a class="action" href="{{ url_for('blog.index') }}">Back</a>
+{% endblock %}

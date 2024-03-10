@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+    <a class="action" href="{{ url_for('personal_information.index',page_number=1) }}">personal information</a>
+    <a class="action" href="{{ url_for('about.index') }}">about</a>
+    <a class="action" href="{{ url_for('search.index') }}">search</a>
+    <a class="action" href="{{ url_for('open_ai.index') }}">open_ai</a>
+{% endif %}
+  {% if page_number*10 < row_count[0][0] %}
+<a class="action" href="{{ url_for('blog.index', page_number=page_number+1) }}">next</a>
+  {% if page_number > 1 %}
+    <a class="action" href="{{ url_for('blog.index', page_number=page_number-1) }}">previous</a>
+{% endif %}
+{% endif %}
+{% if page_number>1 %}
+  {% if page_number*10 > row_count[0][0] %}
+    <a class="action" href="{{ url_for('blog.index', page_number=page_number-1) }}">previous</a>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+<article class="post">
+  <header>
+    <div>
+      <h1><a class="action" href="{{ url_for('reply.index', post_id=post['id'], page_number=1) }}">{{post['title']}}</a></h1>
+      <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+      <div class="about">{{post['view_count']}}</div>
+    </div>
+    {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id'], view_count=post['view_count']) }}">Edit</a>
+    {% endif %}
+    <p class="body">{{ post['body'] }}</p>
+  </header>
+</article>
+{% if not loop.last %}
+  <hr>
+{% endif %}
+{% endfor %}
+{% endblock %}
+

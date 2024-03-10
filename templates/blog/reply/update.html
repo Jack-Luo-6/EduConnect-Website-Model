@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} Edit {% endblock %}</h1>
+  <a class="action" href="{{ url_for('reply.index',page_number=1,post_id=post_id) }}">back</a>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] or reply['body'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('reply.delete', id=reply['id'], view_count=0) }}" method="post">
+      <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
+

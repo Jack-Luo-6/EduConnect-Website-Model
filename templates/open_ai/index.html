@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Open AI{% endblock %}</h1>
+  <a class="action" href="{{ url_for('blog.index') }}">Back</a>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <h1>Welcom to Open AI</h1>
+    <input name="prompt" id="prompt">
+    <input type="submit" value="Enter">
+  </form>
+{% endblock %}
