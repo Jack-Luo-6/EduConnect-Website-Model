@@ -6,4 +6,4 @@ The website is structured as a blog post website, which in the context of EduCon
 
 Before logging in with an user account, the website displays the posts, the authors, and the content and replies if clicked into the post. After logging in, users will get access to posting posts and replies, the personal information customizer, the website description, the search bar, the OpenAI interface.
 
-The actual EduConnect website has over 200 users. 
+This program uses Flaskr, blueprint, MySQL routing, HTML design, CSS design, OpenAI API, and loop counting. It is visualized in a website requiring account verification with 10 clickable blog posts on each page, a link to post blogs, a link to post replies when clicked into blog posts, a link to search bar, a link to incorporated OpenAI, a link to changing personal informaiton, and a link to the description of the website. The actual EduConnect website has over 200 users. 
